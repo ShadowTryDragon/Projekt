@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startseite - Gojo Burgers</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f1e5;
+            color: #333;
+        }
+        header {
+            background-color: #ffa500;
+            padding: 10px 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header img {
+            max-height: 50px;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 15px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 2em;
+        }
+        .hero {
+            background-image: url('Gojo Burger.png');
+            background-size: cover;
+            background-position: center;
+            padding: 50px 20px;
+            text-align: center;
+            color: #fff;
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+        }
+        .hero h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+        .hero p {
+            font-size: 1.5em;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .textbox {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            border: 2px solid #ffa500;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 250px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        .textbox img {
+            max-height: 40px;
+            margin-right: 15px;
+        }
+        footer {
+            background-color: #ffa500;
+            padding: 10px 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            nav.active ul {
+                display: flex;
+            }
+            .content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero p {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .content {
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="gojo-burgers-logo.png" alt="Gojo Burgers Logo">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav id="nav">
+        <ul>
+            <li><a href="index.html">Startseite</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="produkte.html">Produkte</a></li>
+            <li><a href="impressum.html">Impressum</a></li>
+            <li><a href="datenschutz.html">Datenschutz</a></li>
+            <li><a href="login.html">Admin-Bereich</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Willkommen bei Gojo Burgers!</h1>
+    <p>Genieße die besten Burger direkt bei dir zu Hause.</p>
+</section>
+
+<main>
+    <div class="content">
+        <div class="textbox">
+            <img src="icon-specialty.png" alt="Spezialität Icon">
+            <div>
+                <h2>Unsere Spezialität</h2>
+                <p>Unsere Burger sind frisch zubereitet, mit hochwertigen Zutaten und einzigartigen Rezepten.</p>
+            </div>
+        </div>
+        <div class="textbox">
+            <img src="icon-reasons.png" alt="Warum uns wählen Icon">
+            <div>
+                <h2>Warum uns wählen?</h2>
+                <p>Wir bieten nicht nur leckere Burger, sondern auch schnellen Service und faire Preise.</p>
+            </div>
+        </div>
+        <div class="textbox">
+            <img src="icon-variety.png" alt="Verfügbar für jeden Icon">
+            <div>
+                <h2>Verfügbar für jeden</h2>
+                <p>Ob Vegetarier oder Fleischliebhaber, wir haben für jeden Geschmack den perfekten Burger.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Gojo Burgers. Alle Rechte vorbehalten.</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('nav');
+        nav.classList.toggle('active');
+    }
+</script>
+</body>
+</html>

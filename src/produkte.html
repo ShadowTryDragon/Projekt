@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produkte - Burger Online Shop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Startseite</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="produkte.html">Produkte</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="impressum.html">Impressum</a></li>
+            <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h1>Unsere Burger</h1>
+
+    <section class="filter-options">
+        <button id="filter-all">Alle</button>
+        <button id="filter-beef">Beef</button>
+        <button id="filter-vegetarian">Vegetarisch</button>
+    </section>
+
+    <section class="products">
+        <!-- Dynamische Produktanzeige -->
+        <article class="product">
+            <h2>Classic Burger</h2>
+            <img src="images/classic_burger.jpg" alt="Classic Burger">
+            <p>Saftiger Rindfleischburger mit frischem Salat, Tomate und Zwiebeln.</p>
+            <p><strong>Preis:</strong> 5,99 €</p>
+            <button onclick="addToCart(1)">In den Warenkorb</button>
+        </article>
+
+        <article class="product">
+            <h2>Cheeseburger</h2>
+            <img src="images/cheeseburger.jpg" alt="Cheeseburger">
+            <p>Unser Klassiker mit extra viel Käse und einer geheimen Sauce.</p>
+            <p><strong>Preis:</strong> 6,49 €</p>
+            <button onclick="addToCart(2)">In den Warenkorb</button>
+        </article>
+
+        <article class="product">
+            <h2>Veggie Burger</h2>
+            <img src="images/veggie_burger.jpg" alt="Veggie Burger">
+            <p>Ein leckerer, pflanzlicher Burger für unsere vegetarischen Freunde.</p>
+            <p><strong>Preis:</strong> 5,49 €</p>
+            <button onclick="addToCart(3)">In den Warenkorb</button>
+        </article>
+
+        <article class="product">
+            <h2>BBQ Bacon Burger</h2>
+            <img src="images/bbq_bacon_burger.jpg" alt="BBQ Bacon Burger">
+            <p>Herzhafter Burger mit BBQ-Sauce und knusprigem Speck.</p>
+            <p><strong>Preis:</strong> 7,49 €</p>
+            <button onclick="addToCart(4)">In den Warenkorb</button>
+        </article>
+    </section>
+
+
+    <section class="cart">
+        <h2>Warenkorb</h2>
+        <div class="cart-items">
+            <!-- Dynamische Warenkorbanzeige -->
+        </div>
+        <p class="cart-total">Gesamtsumme: 0,00 €</p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; Gojo Burger. Alle Rechte vorbehalten.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
