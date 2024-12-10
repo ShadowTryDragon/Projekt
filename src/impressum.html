@@ -8,20 +8,27 @@
 </head>
 <body>
 <header>
-    <nav>
+    <img src="gojo-burgers-logo.png" alt="Gojo Burgers Logo">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav id="nav">
         <ul>
             <li><a href="index.html">Startseite</a></li>
+            <li><a href="login.html">Login</a></li>
             <li><a href="team.html">Team</a></li>
             <li><a href="produkte.html">Produkte</a></li>
+            <li><a href="neue.html">Produktvorschläge</a></li>
             <li><a href="impressum.html">Impressum</a></li>
             <li><a href="datenschutz.html">Datenschutz</a></li>
-            <li><a href="login.html">Login</a></li>
         </ul>
     </nav>
 </header>
+<section class="hero">
+</section>
 
 <main>
-    <h1>Impressum</h1>
+    <div class="content">
+        <h1>Impressum</h1>
+
     <section class="impressum-content">
         <h2>Angaben gemäß § 5 TMG</h2>
         <p><strong>Firma:</strong> Gojo Burger GmbH</p>
@@ -29,7 +36,6 @@
         <p><strong>Adresse:</strong> Musterstraße 123, 12345 Musterstadt</p>
         <p><strong>Telefon:</strong> +49 123 456 789</p>
         <p><strong>E-Mail:</strong> kontakt@burgeronlineshop.de</p>
-
         <h2>Verantwortlicher gemäß § 55 Abs. 2 RStV</h2>
         <p>Max Mustermann, Musterstraße 123, 12345 Musterstadt</p>
 
@@ -39,12 +45,19 @@
         <h2>Haftung für Links</h2>
         <p>Unsere Website enthält Links zu externen Webseiten Dritter. Auf den Inhalt dieser verlinkten Seiten haben wir keinen Einfluss. Deshalb übernehmen wir keine Gewähr für diese Inhalte. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
     </section>
+            </div>
 </main>
 
 <footer>
     <p>&copy; 2024 Burger Online Shop. Alle Rechte vorbehalten.</p>
 </footer>
 
-<script src="script.js"></script>
+<script>
+
+    function toggleMenu() {
+        const nav = document.getElementById('nav');
+        nav.classList.toggle('active');}
+
+</script>
 </body>
 </html>

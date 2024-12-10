@@ -8,19 +8,25 @@
 </head>
 <body>
 <header>
-    <nav>
+    <img src="gojo-burgers-logo.png" alt="Gojo Burgers Logo">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav id="nav">
         <ul>
             <li><a href="index.html">Startseite</a></li>
+            <li><a href="login.html">Login</a></li>
             <li><a href="team.html">Team</a></li>
             <li><a href="produkte.html">Produkte</a></li>
-            <li><a href="login.html">Login</a></li>
+            <li><a href="neue.html">Produktvorschläge</a></li>
             <li><a href="impressum.html">Impressum</a></li>
             <li><a href="datenschutz.html">Datenschutz</a></li>
         </ul>
     </nav>
 </header>
+<section class="hero">
+</section>
 
 <main>
+    <div class="content">
     <h1>Unsere Burger</h1>
 
     <section class="filter-options">
@@ -29,8 +35,10 @@
         <button id="filter-vegetarian">Vegetarisch</button>
     </section>
 
+
     <section class="products">
         <!-- Dynamische Produktanzeige -->
+        <div class="textbox">
         <article class="product">
             <h2>Classic Burger</h2>
             <img src="images/classic_burger.jpg" alt="Classic Burger">
@@ -38,7 +46,9 @@
             <p><strong>Preis:</strong> 5,99 €</p>
             <button onclick="addToCart(1)">In den Warenkorb</button>
         </article>
+        </div>
 
+        <div class="textbox">
         <article class="product">
             <h2>Cheeseburger</h2>
             <img src="images/cheeseburger.jpg" alt="Cheeseburger">
@@ -46,7 +56,9 @@
             <p><strong>Preis:</strong> 6,49 €</p>
             <button onclick="addToCart(2)">In den Warenkorb</button>
         </article>
+        </div>
 
+        <div class="textbox">
         <article class="product">
             <h2>Veggie Burger</h2>
             <img src="images/veggie_burger.jpg" alt="Veggie Burger">
@@ -54,7 +66,9 @@
             <p><strong>Preis:</strong> 5,49 €</p>
             <button onclick="addToCart(3)">In den Warenkorb</button>
         </article>
+        </div>
 
+        <div class="textbox">
         <article class="product">
             <h2>BBQ Bacon Burger</h2>
             <img src="images/bbq_bacon_burger.jpg" alt="BBQ Bacon Burger">
@@ -62,6 +76,7 @@
             <p><strong>Preis:</strong> 7,49 €</p>
             <button onclick="addToCart(4)">In den Warenkorb</button>
         </article>
+        </div>
     </section>
 
 
@@ -72,12 +87,19 @@
         </div>
         <p class="cart-total">Gesamtsumme: 0,00 €</p>
     </section>
+    </div>
 </main>
 
 <footer>
     <p>&copy; Gojo Burger. Alle Rechte vorbehalten.</p>
 </footer>
 
-<script src="script.js"></script>
+<script>
+
+    function toggleMenu() {
+        const nav = document.getElementById('nav');
+        nav.classList.toggle('active');}
+
+</script>
 </body>
 </html>

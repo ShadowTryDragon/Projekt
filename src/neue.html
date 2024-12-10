@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="de">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 0;
+        box-sizing: border-box;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    header {
+        background-color: #f8c10e;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+    }
+
+    header img {
+        max-width: 150px;
+        height: auto;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    nav ul li {
+        margin: 0 10px;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #f57f17;
+    }
+
+    .form-section {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        background-color: #f57f17;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #ff9800;
+    }
+
+    .error {
+        color: red;
+        font-size: 0.875rem;
+    }
+
+    footer {
+        background-color: #f8c10e;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 20px;
+    }
+
+    /* Two-column layout for larger screens */
+    @media (min-width: 768px) {
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .form-section {
+            flex: 1;
+            min-width: 300px;
+        }
+    }
+
+    /* Center the layout and adjust spacing */
+    @media (min-width: 1200px) {
+        body {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+
+
+
+
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuer Vorschlag - Gojo Burgers</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <img src="gojo-burgers-logo.png" alt="Gojo Burgers Logo">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav id="nav">
+        <ul>
+            <li><a href="index.html">Startseite</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="produkte.html">Produkte</a></li>
+            <li><a href="impressum.html">Impressum</a></li>
+            <li><a href="datenschutz.html">Datenschutz</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="content">
+<div class="container">
+    <h1>Neuen Vorschlag einreichen</h1>
+    <form id="burgerForm">
+        <div class="form-section">
+            <h2>Persönliche Daten</h2>
+            <label for="name">Vor- und Nachname</label>
+            <input type="text" id="name" name="name" placeholder="Max Mustermann" required>
+            <span class="error" id="nameError"></span>
+
+            <label for="email">E-Mail-Adresse</label>
+            <input type="email" id="email" name="email" placeholder="max@beispiel.de" required>
+            <span class="error" id="emailError"></span>
+        </div>
+
+        <div class="form-section">
+            <h2>Produktvorschläge</h2>
+            <label for="burgerName">Burger-Name</label>
+            <input type="text" id="burgerName" name="burgerName" placeholder="Deluxe Cheeseburger" required>
+            <span class="error" id="burgerNameError"></span>
+
+            <label for="ingredients">Zutaten</label>
+            <textarea id="ingredients" name="ingredients" rows="4" placeholder="z.B. Käse, Rindfleisch, Salat..." required></textarea>
+            <span class="error" id="ingredientsError"></span>
+
+            <label for="recipe">Rezept</label>
+            <textarea id="recipe" name="recipe" rows="4" placeholder="Beschreibe das Rezept..." required></textarea>
+            <span class="error" id="recipeError"></span>
+
+            <label for="imageUpload">Bild hochladen</label>
+            <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
+            <span class="error" id="imageError"></span>
+        </div>
+
+        <button type="submit">Absenden</button>
+
+    </form>
+</div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Gojo Burgers. Alle Rechte vorbehalten.</p>
+</footer>
+
+<script>
+
+    function toggleMenu() {
+        const nav = document.getElementById('nav');
+        nav.classList.toggle('active');}
+
+
+    const form = document.getElementById('burgerForm');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let isValid = true;
+
+        const name = document.getElementById('name');
+        const nameError = document.getElementById('nameError');
+        if (name.value.trim() === '') {
+            nameError.textContent = 'Bitte geben Sie Ihren Namen ein.';
+            isValid = false;
+        } else {
+            nameError.textContent = '';
+        }
+
+        const email = document.getElementById('email');
+        const emailError = document.getElementById('emailError');
+        if (!email.value.includes('@')) {
+            emailError.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
+            isValid = false;
+        } else {
+            emailError.textContent = '';
+        }
+
+        const burgerName = document.getElementById('burgerName');
+        const burgerNameError = document.getElementById('burgerNameError');
+        if (burgerName.value.trim() === '') {
+            burgerNameError.textContent = 'Bitte geben Sie einen Burger-Namen ein.';
+            isValid = false;
+        } else {
+            burgerNameError.textContent = '';
+        }
+
+        const ingredients = document.getElementById('ingredients');
+        const ingredientsError = document.getElementById('ingredientsError');
+        if (ingredients.value.trim() === '') {
+            ingredientsError.textContent = 'Bitte geben Sie die Zutaten ein.';
+            isValid = false;
+        } else {
+            ingredientsError.textContent = '';
+        }
+
+        const recipe = document.getElementById('recipe');
+        const recipeError = document.getElementById('recipeError');
+        if (recipe.value.trim() === '') {
+            recipeError.textContent = 'Bitte beschreiben Sie das Rezept.';
+            isValid = false;
+        } else {
+            recipeError.textContent = '';
+        }
+
+        if (isValid) {
+            alert('Vielen Dank für Ihren Vorschlag!');
+            form.reset();
+        }
+
+
+    });
+</script>
+</body>
+</html>

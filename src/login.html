@@ -8,33 +8,39 @@
 </head>
 <body>
 <header>
-    <nav>
+    <img src="gojo-burgers-logo.png" alt="Gojo Burgers Logo">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav id="nav">
         <ul>
             <li><a href="index.html">Startseite</a></li>
+            <li><a href="login.html">Login</a></li>
             <li><a href="team.html">Team</a></li>
             <li><a href="produkte.html">Produkte</a></li>
+            <li><a href="neue.html">Produktvorschläge</a></li>
             <li><a href="impressum.html">Impressum</a></li>
             <li><a href="datenschutz.html">Datenschutz</a></li>
         </ul>
     </nav>
 </header>
-
+<section class="hero">
+</section>
 <main>
     <h1>Anmelden oder Registrieren</h1>
-
+ <div class="content">
     <section class="login-section">
         <h2>Anmeldung</h2>
         <form class="login-form">
             <label for="username">Benutzername:</label>
             <input type="text" id="username" name="username" required>
-
             <label for="password">Passwort:</label>
             <input type="password" id="password" name="password" required>
 
             <button type="submit">Anmelden</button>
         </form>
-    </section>
 
+    </section>
+ </div>
+<div class="content">
     <section class="register-section">
         <h2>Registrierung</h2>
         <form class="register-form">
@@ -47,12 +53,18 @@
             <button type="submit">Registrieren</button>
         </form>
     </section>
+    </div>
 </main>
 
 <footer>
     <p>&copy;  Gojo Burger. Alle Rechte vorbehalten.</p>
 </footer>
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('nav');
+        nav.classList.toggle('active');}
 
-<script src="script.js"></script>
+</script>
+
 </body>
 </html>

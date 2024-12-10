@@ -8,27 +8,38 @@
 </head>
 <body>
 <header>
-    <nav>
+    <img src="gojo-burgers-logo.png" alt="Gojo Burgers Logo">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav id="nav">
         <ul>
             <li><a href="index.html">Startseite</a></li>
+            <li><a href="login.html">Login</a></li>
             <li><a href="team.html">Team</a></li>
             <li><a href="produkte.html">Produkte</a></li>
+            <li><a href="neue.html">Produktvorschläge</a></li>
             <li><a href="impressum.html">Impressum</a></li>
             <li><a href="datenschutz.html">Datenschutz</a></li>
         </ul>
     </nav>
 </header>
+<section class="hero">
+</section>
 
 <main>
+    <div class="content">
     <h1>Datenschutzerklärung</h1>
 
     <section>
         <h2>1. Allgemeine Hinweise</h2>
+        <div class="textbox">
         <p>Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. Diese Datenschutzerklärung erläutert, welche Daten wir erheben, wie wir sie nutzen und welche Rechte Sie in Bezug auf Ihre Daten haben.</p>
+        </div>
     </section>
+
 
     <section>
         <h2>2. Verantwortliche Stelle</h2>
+        <div class="textbox">
         <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist: Vincent</p>
         <address>
             Gojo Burger <br>
@@ -36,31 +47,48 @@
             12345 Musterstadt<br>
             E-Mail: info@gojoburger.de
         </address>
+        </div>
     </section>
 
     <section>
         <h2>3. Datenverarbeitung</h2>
         <h3>3.1 Zugriffsdaten</h3>
+        <div class="textbox">
+
         <p>Beim Besuch unserer Website werden automatisch Daten wie IP-Adresse, verwendeter Browser und Zugriffszeitpunkt erfasst. Diese Daten dienen ausschließlich zur Sicherstellung eines störungsfreien Betriebs.</p>
-
-
+        </div>
         <h3>3.2 Cookies</h3>
+        <div class="textbox">
         <p>Unsere Website verwendet Cookies. Sie dienen dazu, unsere Angebote nutzerfreundlicher und sicherer zu machen. Sie können die Speicherung von Cookies in Ihrem Browser deaktivieren.</p>
+        </div>
     </section>
 
     <section>
         <h2>4. Ihre Rechte</h2>
+        <div class="textbox">
         <p>Sie haben das Recht, jederzeit Auskunft über die gespeicherten Daten zu erhalten, diese zu berichtigen, zu löschen oder die Verarbeitung einzuschränken. Wenden Sie sich hierfür an die oben genannte verantwortliche Stelle.</p>
+        </div>
     </section>
 
     <section>
         <h2>5. Änderungen</h2>
+        <div class="textbox">
         <p>Diese Datenschutzerklärung kann jederzeit aktualisiert werden, um rechtlichen Anforderungen zu entsprechen oder Änderungen unserer Dienstleistungen abzubilden.</p>
+        </div>
     </section>
+    </div>
 </main>
 
 <footer>
     <p>&copy; 2024 Burger Online Shop. Alle Rechte vorbehalten.</p>
 </footer>
+
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('nav');
+        nav.classList.toggle('active');}
+
+</script>
+
 </body>
 </html>

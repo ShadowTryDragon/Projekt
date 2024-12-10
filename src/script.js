@@ -107,6 +107,61 @@ document.querySelector('.register-form').addEventListener('submit', function(eve
         document.querySelector('.register-form').reset();
     }
 });
+const form = document.getElementById('burgerForm');
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    let isValid = true;
+
+    const name = document.getElementById('name');
+    const nameError = document.getElementById('nameError');
+    if (name.value.trim() === '') {
+        nameError.textContent = 'Bitte geben Sie Ihren Namen ein.';
+        isValid = false;
+    } else {
+        nameError.textContent = '';
+    }
+
+    const email = document.getElementById('email');
+    const emailError = document.getElementById('emailError');
+    if (!email.value.includes('@')) {
+        emailError.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
+        isValid = false;
+    } else {
+        emailError.textContent = '';
+    }
+
+    const burgerName = document.getElementById('burgerName');
+    const burgerNameError = document.getElementById('burgerNameError');
+    if (burgerName.value.trim() === '') {
+        burgerNameError.textContent = 'Bitte geben Sie einen Burger-Namen ein.';
+        isValid = false;
+    } else {
+        burgerNameError.textContent = '';
+    }
+
+    const ingredients = document.getElementById('ingredients');
+    const ingredientsError = document.getElementById('ingredientsError');
+    if (ingredients.value.trim() === '') {
+        ingredientsError.textContent = 'Bitte geben Sie die Zutaten ein.';
+        isValid = false;
+    } else {
+        ingredientsError.textContent = '';
+    }
+
+    const recipe = document.getElementById('recipe');
+    const recipeError = document.getElementById('recipeError');
+    if (recipe.value.trim() === '') {
+        recipeError.textContent = 'Bitte beschreiben Sie das Rezept.';
+        isValid = false;
+    } else {
+        recipeError.textContent = '';
+    }
+
+    if (isValid) {
+        alert('Vielen Dank für Ihren Vorschlag!');
+        form.reset();
+    }
+});
 
 
 
