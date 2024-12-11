@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anmeldung - Burger Online Shop</title>
+    <title>Anmeldung </title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -26,45 +26,74 @@
 </section>
 <main>
     <h1>Anmelden oder Registrieren</h1>
- <div class="content">
-    <section class="login-section">
-        <h2>Anmeldung</h2>
-        <form class="login-form">
-            <label for="username">Benutzername:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Passwort:</label>
-            <input type="password" id="password" name="password" required>
-
-            <button type="submit">Anmelden</button>
-        </form>
-
-    </section>
- </div>
-<div class="content">
-    <section class="register-section">
-        <h2>Registrierung</h2>
-        <form class="register-form">
-            <label for="register-username">Benutzername:</label>
-            <input type="text" id="register-username" name="register-username" required>
-
-            <label for="register-password">Passwort:</label>
-            <input type="password" id="register-password" name="register-password" required>
-
-            <button type="submit">Registrieren</button>
-        </form>
-    </section>
+    <div class="content">
+        <section class="login-section">
+            <h2>Anmeldung</h2>
+            <form class="login-form">
+                <label for="username">Benutzername:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Passwort:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Anmelden</button>
+            </form>
+        </section>
+    </div>
+    <div class="content">
+        <section class="register-section">
+            <h2>Registrierung</h2>
+            <form class="register-form">
+                <label for="register-username">Benutzername:</label>
+                <input type="text" id="register-username" name="register-username" required>
+                <label for="register-password">Passwort:</label>
+                <input type="password" id="register-password" name="register-password" required>
+                <button type="submit">Registrieren</button>
+            </form>
+        </section>
     </div>
 </main>
-
 <footer>
-    <p>&copy;  Gojo Burger. Alle Rechte vorbehalten.</p>
+    <p>&copy; Gojo Burger. Alle Rechte vorbehalten.</p>
 </footer>
 <script>
+    const users = [
+        { username: "admin", password: "password123" }
+    ];
+
+    // Login functionality
+    document.querySelector('.login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const user = users.find(user => user.username === username && user.password === password);
+
+        if (user) {
+            window.location.href = 'admin.html'; // Weiterleitung zur Admin-Seite
+            alert("Erfolgreich angemeldet!");
+        } else {
+            alert("Ungültige Anmeldedaten.");
+        }
+    });
+
+    // Registration functionality
+    document.querySelector('.register-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const username = document.getElementById('register-username').value;
+        const password = document.getElementById('register-password').value;
+
+        if (users.some(user => user.username === username)) {
+            alert("Benutzername ist bereits vergeben.");
+        } else {
+            users.push({ username, password });
+            alert("Registrierung erfolgreich! Sie können sich jetzt anmelden.");
+            document.querySelector('.register-form').reset();
+        }
+    });
+
     function toggleMenu() {
         const nav = document.getElementById('nav');
-        nav.classList.toggle('active');}
-
+        nav.classList.toggle('active');
+    }
 </script>
-
 </body>
 </html>
