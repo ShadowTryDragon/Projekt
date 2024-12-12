@@ -27,66 +27,25 @@
 
 <main>
     <div class="content">
-    <h1>Unsere Burger</h1>
+        <h1>Unsere Burger</h1>
 
-    <section class="filter-options">
-        <button id="filter-all">Alle</button>
-        <button id="filter-beef">Beef</button>
-        <button id="filter-vegetarian">Vegetarisch</button>
-    </section>
+        <section class="filter-options">
+            <button id="filter-all" onclick="filterProducts('all')">Alle</button>
+            <button id="filter-beef" onclick="filterProducts('beef')">Beef</button>
+            <button id="filter-vegetarian" onclick="filterProducts('vegetarian')">Vegetarisch</button>
+        </section>
 
+        <section class="products">
+            <!-- Dynamische Produktanzeige -->
+        </section>
 
-    <section class="products">
-        <!-- Dynamische Produktanzeige -->
-        <div class="textbox">
-        <article class="product">
-            <h2>Classic Burger</h2>
-            <img src="images/classic_burger.jpg" alt="Classic Burger">
-            <p>Saftiger Rindfleischburger mit frischem Salat, Tomate und Zwiebeln.</p>
-            <p><strong>Preis:</strong> 5,99 €</p>
-            <button onclick="addToCart(1)">In den Warenkorb</button>
-        </article>
-        </div>
-
-        <div class="textbox">
-        <article class="product">
-            <h2>Cheeseburger</h2>
-            <img src="images/cheeseburger.jpg" alt="Cheeseburger">
-            <p>Unser Klassiker mit extra viel Käse und einer geheimen Sauce.</p>
-            <p><strong>Preis:</strong> 6,49 €</p>
-            <button onclick="addToCart(2)">In den Warenkorb</button>
-        </article>
-        </div>
-
-        <div class="textbox">
-        <article class="product">
-            <h2>Veggie Burger</h2>
-            <img src="images/veggie_burger.jpg" alt="Veggie Burger">
-            <p>Ein leckerer, pflanzlicher Burger für unsere vegetarischen Freunde.</p>
-            <p><strong>Preis:</strong> 5,49 €</p>
-            <button onclick="addToCart(3)">In den Warenkorb</button>
-        </article>
-        </div>
-
-        <div class="textbox">
-        <article class="product">
-            <h2>BBQ Bacon Burger</h2>
-            <img src="images/bbq_bacon_burger.jpg" alt="BBQ Bacon Burger">
-            <p>Herzhafter Burger mit BBQ-Sauce und knusprigem Speck.</p>
-            <p><strong>Preis:</strong> 7,49 €</p>
-            <button onclick="addToCart(4)">In den Warenkorb</button>
-        </article>
-        </div>
-    </section>
-
-
-    <section class="cart">
-        <h2>Warenkorb</h2>
-        <div class="cart-items">
-            <!-- Dynamische Warenkorbanzeige -->
-        </div>
-        <p class="cart-total">Gesamtsumme: 0,00 €</p>
-    </section>
+        <section class="cart">
+            <h2>Warenkorb</h2>
+            <div class="cart-items">
+                <!-- Dynamische Warenkorbanzeige -->
+            </div>
+            <p class="cart-total">Gesamtsumme: 0,00 €</p>
+        </section>
     </div>
 </main>
 
@@ -95,11 +54,105 @@
 </footer>
 
 <script>
+const products = [
+    { id: 1, name: "Classic Burger", category: "beef", price: 5.99 },
+    { id: 2, name: "Cheeseburger", category: "beef", price: 6.49 },
+    { id: 3, name: "Veggie Burger", category: "vegetarian", price: 5.49 },
+    { id: 4, name: "BBQ Bacon Burger", category: "beef", price: 7.49 }
+];
 
-    function toggleMenu() {
-        const nav = document.getElementById('nav');
-        nav.classList.toggle('active');}
+let cart = [];
 
+// Filter function
+function filterProducts(category) {
+    const filtered = category === "all" ? products : products.filter(product => product.category === category);
+    displayProducts(filtered);
+}
+
+// Display products dynamically
+function displayProducts(productList) {
+    const productContainer = document.querySelector(".products");
+    productContainer.innerHTML = ""; // Clear current products
+
+    productList.forEach(product => {
+        const productElement = document.createElement("article");
+        productElement.className = "product";
+        productElement.innerHTML = `
+            <h2>${product.name}</h2>
+            <p><strong>Preis:</strong> ${product.price.toFixed(2)} €</p>
+            <label for="quantity-${product.id}">Menge:</label>
+            <input type="number" id="quantity-${product.id}" min="1" value="1">
+            <button onclick="addToCart(${product.id})">In den Warenkorb</button>
+        `;
+        productContainer.appendChild(productElement);
+    });
+}
+
+displayProducts(products);
+
+// Add to cart function
+function addToCart(productId) {
+    const quantityInput = document.getElementById(`quantity-${productId}`);
+    const quantity = parseInt(quantityInput.value) || 1;
+
+    const product = products.find(p => p.id === productId);
+    const existing = cart.find(item => item.id === productId);
+
+    if (existing) {
+        existing.quantity += quantity;
+    } else {
+        cart.push({ ...product, quantity });
+    }
+
+    updateCartDisplay();
+}
+
+// Remove from cart function
+function removeFromCart(productId) {
+    const quantityInput = document.getElementById(`remove-quantity-${productId}`);
+    const quantityToRemove = parseInt(quantityInput.value) || 1;
+
+    const existing = cart.find(item => item.id === productId);
+
+    if (existing) {
+        existing.quantity -= quantityToRemove;
+        if (existing.quantity <= 0) {
+            cart = cart.filter(item => item.id !== productId);
+        }
+    }
+
+    updateCartDisplay();
+}
+
+// Update cart display
+function updateCartDisplay() {
+    const cartContainer = document.querySelector(".cart-items");
+    const totalDisplay = document.querySelector(".cart-total");
+
+    cartContainer.innerHTML = ""; // Clear current cart
+    let total = 0;
+
+    cart.forEach(item => {
+        const cartItem = document.createElement("div");
+        cartItem.className = "cart-item";
+        cartItem.innerHTML = `
+            <p>${item.name} x${item.quantity}</p>
+            <p>${(item.price * item.quantity).toFixed(2)} €</p>
+            <label for="remove-quantity-${item.id}">Menge entfernen:</label>
+            <input type="number" id="remove-quantity-${item.id}" min="1" value="1">
+            <button onclick="removeFromCart(${item.id})">Entfernen</button>
+        `;
+        cartContainer.appendChild(cartItem);
+        total += item.price * item.quantity;
+    });
+
+    totalDisplay.textContent = `Gesamtsumme: ${total.toFixed(2)} €`;
+}
+
+function toggleMenu() {
+    const nav = document.getElementById('nav');
+    nav.classList.toggle('active');
+}
 </script>
 </body>
 </html>
