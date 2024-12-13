@@ -1,98 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        padding: 0;
-        box-sizing: border-box;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    header {
-        background-color: #f8c10e;
-        padding: 20px;
-        text-align: center;
-        position: relative;
-    }
-
-    header img {
-        max-width: 150px;
-        height: auto;
-    }
-
-    nav ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    nav ul li {
-        margin: 0 10px;
-    }
-
-    nav ul li a {
-        text-decoration: none;
-        color: #000;
-        font-weight: bold;
-    }
-
-    .container {
-        padding: 20px;
-    }
-
-    h1 {
-        text-align: center;
-        color: #f57f17;
-    }
-
-    .form-section {
-        margin-bottom: 20px;
-    }
-
-    label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-
-    input, textarea {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    button {
-        background-color: #f57f17;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-        background-color: #ff9800;
-    }
-
-    .error {
-        color: red;
-        font-size: 0.875rem;
-    }
-
-    footer {
-        background-color: #f8c10e;
-        text-align: center;
-        padding: 10px 0;
-        margin-top: 20px;
-    }
-
     /* Two-column layout for larger screens */
     @media (min-width: 768px) {
         form {
@@ -105,6 +13,11 @@
             flex: 1;
             min-width: 300px;
         }
+
+        .form-button {
+            width: 100%;
+            text-align: center;
+        }
     }
 
     /* Center the layout and adjust spacing */
@@ -115,10 +28,24 @@
         }
     }
 
+    /* Ensure the button is always below the form */
+    button[type="submit"] {
+        margin-top: 20px;
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
 
-
-
-
+    button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
 
 </style>
 
@@ -128,9 +55,10 @@
     <title>Neuer Vorschlag - Gojo Burgers</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 <header>
-    <img src="gojo-burgers-logo.png" alt="Gojo Burgers Logo">
+    <img src="Logo.webp" alt="Gojo Burgers Logo">
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav id="nav">
         <ul>
@@ -141,49 +69,49 @@
             <li><a href="neue.html">Produktvorschläge</a></li>
             <li><a href="impressum.html">Impressum</a></li>
             <li><a href="datenschutz.html">Datenschutz</a></li>
-
         </ul>
     </nav>
 </header>
 
 <div class="content">
-<div class="container">
-    <h1>Neuen Vorschlag einreichen</h1>
-    <form id="burgerForm">
-        <div class="form-section">
-            <h2>Persönliche Daten</h2>
-            <label for="name">Vor- und Nachname</label>
-            <input type="text" id="name" name="name" placeholder="Max Mustermann" required>
-            <span class="error" id="nameError"></span>
+    <div class="container">
+        <h1>Neuen Vorschlag einreichen</h1>
+        <form id="burgerForm">
+            <div class="form-section">
+                <h2>Persönliche Daten</h2>
+                <label for="name">Vor- und Nachname</label>
+                <input type="text" id="name" name="name" placeholder="Max Mustermann" required>
+                <span class="error" id="nameError"></span>
 
-            <label for="email">E-Mail-Adresse</label>
-            <input type="email" id="email" name="email" placeholder="max@beispiel.de" required>
-            <span class="error" id="emailError"></span>
-        </div>
+                <label for="email">E-Mail-Adresse</label>
+                <input type="email" id="email" name="email" placeholder="max@beispiel.de" required>
+                <span class="error" id="emailError"></span>
+            </div>
 
-        <div class="form-section">
-            <h2>Produktvorschläge</h2>
-            <label for="burgerName">Burger-Name</label>
-            <input type="text" id="burgerName" name="burgerName" placeholder="Deluxe Cheeseburger" required>
-            <span class="error" id="burgerNameError"></span>
+            <div class="form-section">
+                <h2>Produktvorschläge</h2>
+                <label for="burgerName">Burger-Name</label>
+                <input type="text" id="burgerName" name="burgerName" placeholder="Deluxe Cheeseburger" required>
+                <span class="error" id="burgerNameError"></span>
 
-            <label for="ingredients">Zutaten</label>
-            <textarea id="ingredients" name="ingredients" rows="4" placeholder="z.B. Käse, Rindfleisch, Salat..." required></textarea>
-            <span class="error" id="ingredientsError"></span>
+                <label for="ingredients">Zutaten</label>
+                <textarea id="ingredients" name="ingredients" rows="4" placeholder="z.B. Käse, Rindfleisch, Salat..." required></textarea>
+                <span class="error" id="ingredientsError"></span>
 
-            <label for="recipe">Rezept</label>
-            <textarea id="recipe" name="recipe" rows="4" placeholder="Beschreibe das Rezept..." required></textarea>
-            <span class="error" id="recipeError"></span>
+                <label for="recipe">Rezept</label>
+                <textarea id="recipe" name="recipe" rows="4" placeholder="Beschreibe das Rezept..." required></textarea>
+                <span class="error" id="recipeError"></span>
 
-            <label for="imageUpload">Bild hochladen</label>
-            <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
-            <span class="error" id="imageError"></span>
-        </div>
+                <label for="imageUpload">Bild hochladen</label>
+                <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
+                <span class="error" id="imageError"></span>
+            </div>
 
-        <button type="submit">Absenden</button>
-
-    </form>
-</div>
+            <div class="form-button">
+                <button type="submit">Absenden</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <footer>
@@ -191,11 +119,10 @@
 </footer>
 
 <script>
-
     function toggleMenu() {
         const nav = document.getElementById('nav');
-        nav.classList.toggle('active');}
-
+        nav.classList.toggle('active');
+    }
 
     const form = document.getElementById('burgerForm');
     form.addEventListener('submit', function(e) {
@@ -251,8 +178,6 @@
             alert('Vielen Dank für Ihren Vorschlag!');
             form.reset();
         }
-
-
     });
 </script>
 </body>
