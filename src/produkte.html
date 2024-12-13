@@ -8,7 +8,7 @@
 </head>
 <body>
 <header>
-    <img src="gojo-burgers-logo.png" alt="Gojo Burgers Logo">
+    <img src="Logo.webp" alt="Gojo Burgers Logo">
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav id="nav">
         <ul>
@@ -33,6 +33,8 @@
             <button id="filter-all" onclick="filterProducts('all')">Alle</button>
             <button id="filter-beef" onclick="filterProducts('beef')">Beef</button>
             <button id="filter-vegetarian" onclick="filterProducts('vegetarian')">Vegetarisch</button>
+            <button id="filter-beilage" onclick="filterProducts('beilage')">Beilage</button>
+            <button id="filter-getränke" onclick="filterProducts('getränke')">Getränke</button>
         </section>
 
         <section class="products">
@@ -58,7 +60,11 @@ const products = [
     { id: 1, name: "Classic Burger", category: "beef", price: 5.99 },
     { id: 2, name: "Cheeseburger", category: "beef", price: 6.49 },
     { id: 3, name: "Veggie Burger", category: "vegetarian", price: 5.49 },
-    { id: 4, name: "BBQ Bacon Burger", category: "beef", price: 7.49 }
+    { id: 4, name: "BBQ Bacon Burger", category: "beef", price: 7.49 },
+    { id: 5, name: "Salat", category: "beilage", price: 3.90},
+    { id: 6, name: "Pommes", category: "beilage", price: 3.50},
+    { id: 7, name: "Wasser", category: "getränke", price: 2.70},
+    { id: 8, name: "Soft Drinks", category: "getränke", price: 3.00}
 ];
 
 let cart = [];
