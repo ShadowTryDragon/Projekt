@@ -1,136 +1,63 @@
 <!DOCTYPE html>
 <html lang="de">
-
-
 <head>
-  <link rel="stylesheet" href="styles.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin-Bereich</title>
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum - Burger Online Shop</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<section class="hero"></section>
 <body>
 <header>
-  <img src="Logo.webp" alt="Gojo Burgers Logo">
-  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-  <nav id="nav">
-    <ul>
-      <li><a href="index.html">Startseite</a></li>
-      <li><a href="login.html">Login</a></li>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="produkte.html">Produkte</a></li>
-      <li><a href="neue.html">Produktvorschläge</a></li>
-      <li><a href="impressum.html">Impressum</a></li>
-      <li><a href="datenschutz.html">Datenschutz</a></li>
-    </ul>
-  </nav>
+    <img src="Logo.webp" alt="Gojo Burgers Logo">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav id="nav">
+        <ul>
+            <li><a href="index.html">Startseite</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="produkte.html">Produkte</a></li>
+            <li><a href="neue.html">Produktvorschläge</a></li>
+            <li><a href="impressum.html">Impressum</a></li>
+            <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+    </nav>
 </header>
+<section class="hero">
+</section>
 
-<div class="container">
-  <h1 id="admin" >Admin-Bereich</h1>
+<main>
+    <div class="content">
+        <h1>Impressum</h1>
 
-  <section>
-    <h3>Vorschläge verwalten</h3>
-    <div class="textbox">
-      <ul id="suggestionList">
-        <!-- Dynamische Vorschläge werden hier angezeigt -->
-      </ul>
+    <section class="impressum-content">
+        <h2>Angaben gemäß § 5 TMG</h2>
+        <p><strong>Firma:</strong> Gojo Burger GmbH</p>
+        <p><strong>Vertreten durch:</strong> Boris Dekic</p>
+        <p><strong>Adresse:</strong> Musterstraße 123, 12345 Musterstadt</p>
+        <p><strong>Telefon:</strong> +49 123 456 789</p>
+        <p><strong>E-Mail:</strong> kontakt@burgeronlineshop.de</p>
+        <h2>Verantwortlicher gemäß § 55 Abs. 2 RStV</h2>
+        <p>Max Mustermann, Musterstraße 123, 12345 Musterstadt</p>
 
-    </div>
+        <h2>Haftungsausschluss</h2>
+        <p>Der Inhalt dieser Website wurde mit größter Sorgfalt erstellt. Dennoch übernimmt Burger Online Shop GmbH keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Informationen. Jegliche Haftung für Schäden, die aus der Nutzung dieser Website entstehen, wird ausgeschlossen, soweit dies gesetzlich zulässig ist.</p>
 
-    <h3>Neuen Vorschlag anlegen</h3>
-    <form class="fadmin" id="newSuggestionForm">
-      <label for="suggestionName">Name</label>
-      <input type="text" id="suggestionName" name="suggestionName" placeholder="Name des Burgers" required>
-
-      <label for="suggestionIngredients">Zutaten</label>
-      <input type="text" id="suggestionIngredients" name="suggestionIngredients" placeholder="Zutaten (z.B. Käse, Tomate)" required>
-
-      <label for="suggestionRecipe">Rezept</label>
-      <textarea id="suggestionRecipe" name="suggestionRecipe" placeholder="Rezeptbeschreibung" required></textarea>
-
-
-      <button class="adb" type="submit">Hinzufügen</button>
-    </form>
-  </section>
-
-  <button class="adb">Abmelden</button>
-</div>
-
+        <h2>Haftung für Links</h2>
+        <p>Unsere Website enthält Links zu externen Webseiten Dritter. Auf den Inhalt dieser verlinkten Seiten haben wir keinen Einfluss. Deshalb übernehmen wir keine Gewähr für diese Inhalte. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+    </section>
+            </div>
+</main>
 
 <footer>
-  <p>&copy; 2024 Gojo Burgers. Alle Rechte vorbehalten.</p>
+    <p>&copy; 2024 Burger Online Shop. Alle Rechte vorbehalten.</p>
 </footer>
 
 <script>
-  function toggleMenu() {
-    const nav = document.getElementById('nav');
-    nav.classList.toggle('active');}
 
-  const suggestions = [
-    { id: 1, name: 'Mega Cheeseburger', ingredients: 'Rindfleisch, Käse', recipe: 'Grillen und zusammenstellen' },
-    { id: 2, name: 'Veggie Deluxe', ingredients: 'Tofu, Avocado, Salat', recipe: 'Tofu braten und mit Avocado kombinieren' }
-  ];
+    function toggleMenu() {
+        const nav = document.getElementById('nav');
+        nav.classList.toggle('active');}
 
-  const suggestionList = document.getElementById('suggestionList');
-
-  function renderSuggestions() {
-    suggestionList.innerHTML = '';
-    suggestions.forEach((suggestion, index) => {
-      const li = document.createElement('li');
-
-      const content = document.createElement('div');
-      content.innerHTML = `<strong>${suggestion.name}</strong><br>Zutaten: ${suggestion.ingredients}<br>Rezept: ${suggestion.recipe}`;
-      li.appendChild(content);
-
-      const buttonGroup = document.createElement('div');
-      buttonGroup.classList.add('button-group');
-
-      const editButton = document.createElement('button');
-      editButton.textContent = 'Bearbeiten';
-      editButton.addEventListener('click', function () {
-        const newName = prompt('Neuer Name:', suggestion.name);
-        const newIngredients = prompt('Neue Zutaten:', suggestion.ingredients);
-        const newRecipe = prompt('Neues Rezept:', suggestion.recipe);
-
-        if (newName && newIngredients && newRecipe) {
-          suggestions[index] = { ...suggestion, name: newName, ingredients: newIngredients, recipe: newRecipe };
-          renderSuggestions();
-        }
-      });
-
-      const deleteButton = document.createElement('button');
-      deleteButton.textContent = 'Löschen';
-      deleteButton.addEventListener('click', function () {
-        suggestions.splice(index, 1);
-        renderSuggestions();
-      });
-
-      buttonGroup.appendChild(editButton);
-      buttonGroup.appendChild(deleteButton);
-      li.appendChild(buttonGroup);
-      suggestionList.appendChild(li);
-    });
-  }
-
-  renderSuggestions();
-
-  const newSuggestionForm = document.getElementById('newSuggestionForm');
-
-  newSuggestionForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const name = document.getElementById('suggestionName').value;
-    const ingredients = document.getElementById('suggestionIngredients').value;
-    const recipe = document.getElementById('suggestionRecipe').value;
-
-    suggestions.push({ id: suggestions.length + 1, name, ingredients, recipe });
-    renderSuggestions();
-
-    newSuggestionForm.reset();
-  });
 </script>
 </body>
 </html>
