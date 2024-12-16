@@ -15,60 +15,17 @@
 
 
 
-    nav ul li a {
-        text-decoration: none;
-        color: #333;
-    }
 
-    .container {
-        max-width: 1200px;
-        margin: auto;
-        padding: 20px;
-    }
 
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
 
-    .form-section {
-        margin-bottom: 20px;
-    }
 
-    label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-    }
 
-    input, textarea, button {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-    }
 
-    button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
+
 
     button:hover {
         background-color: #0056b3;
     }
-
-    .error {
-        color: red;
-        font-size: 14px;
-    }
-
-
 
     /* Two-column layout for larger screens */
     @media (min-width: 768px) {
@@ -78,10 +35,7 @@
             gap: 20px;
         }
 
-        .form-section {
-            flex: 1;
-            min-width: 300px;
-        }
+
     }
 
     /* Center the layout and adjust spacing */
@@ -133,7 +87,7 @@
 <div class="content">
     <div class="container">
         <h1>Neuen Vorschlag einreichen</h1>
-        <form id="burgerForm">
+        <form class="nf" id="burgerForm">
             <div class="form-section">
                 <h2>Persönliche Daten</h2>
                 <label for="name">Vor- und Nachname</label>
@@ -164,7 +118,7 @@
                 <span class="error" id="imageError"></span>
             </div>
 
-            <button type="submit">Absenden</button>
+            <button class="nb" type="submit">Absenden</button>
         </form>
     </div>
 </div>
