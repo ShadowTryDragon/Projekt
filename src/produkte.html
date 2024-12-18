@@ -48,6 +48,7 @@
                 <!-- Dynamische Warenkorbanzeige -->
             </div>
             <p class="cart-total">Gesamtsumme: 0,00 €</p>
+            <button id="checkout-btn" onclick="goToCheckout()" style="display: none;">Zur Kasse</button>
         </section>
     </div>
 </main>
@@ -57,110 +58,112 @@
 </footer>
 
 <script>
-const products = [
-    { id: 1, name: "Classic Burger", category: "beef", price: 5.99 },
-    { id: 2, name: "Cheeseburger", category: "beef", price: 6.49 },
-    { id: 3, name: "Veggie Burger", category: "vegetarian", price: 5.49 },
-    { id: 4, name: "BBQ Bacon Burger", category: "beef", price: 7.49 },
-    { id: 5, name: "Salat", category: "beilage", price: 3.90},
-    { id: 6, name: "Pommes", category: "beilage", price: 3.50},
-    { id: 7, name: "Wasser", category: "getränke", price: 2.70},
-    { id: 8, name: "Soft Drinks", category: "getränke", price: 3.00},
-    { id: 9, name: "Gojo Special Burger", category: "beef", price: 10.00}];
+    const products = [
+        { id: 1, name: "Classic Burger", category: "beef", price: 5.99 },
+        { id: 2, name: "Cheeseburger", category: "beef", price: 6.49 },
+        { id: 3, name: "Veggie Burger", category: "vegetarian", price: 5.49 },
+        { id: 4, name: "BBQ Bacon Burger", category: "beef", price: 7.49 },
+        { id: 5, name: "Salat", category: "beilage", price: 3.90 },
+        { id: 6, name: "Pommes", category: "beilage", price: 3.50 },
+        { id: 7, name: "Wasser", category: "getränke", price: 2.70 },
+        { id: 8, name: "Soft Drinks", category: "getränke", price: 3.00 },
+        { id: 9, name: "Gojo Special Burger", category: "beef", price: 10.00 }];
 
+    let cart = [];
 
-let cart = [];
+    // Filter function
+    function filterProducts(category) {
+        const filtered = category === "all" ? products : products.filter(product => product.category === category);
+        displayProducts(filtered);
+    }
 
-// Filter function
-function filterProducts(category) {
-    const filtered = category === "all" ? products : products.filter(product => product.category === category);
-    displayProducts(filtered);
-}
+    // Display products dynamically
+    function displayProducts(productList) {
+        const productContainer = document.querySelector(".products");
+        productContainer.innerHTML = ""; // Clear current products
 
-// Display products dynamically
-function displayProducts(productList) {
-    const productContainer = document.querySelector(".products");
-    productContainer.innerHTML = ""; // Clear current products
+        const productListElement = document.createElement("ul");
+        productListElement.className = "product-list";
 
-    productList.forEach(product => {
-        const productElement = document.createElement("article");
-        productElement.className = "product";
-        productElement.innerHTML = `
+        productList.forEach(product => {
+            const productItem = document.createElement("li");
+            productItem.className = "product-item";
+            productItem.innerHTML = `
             <h2>${product.name}</h2>
             <p><strong>Preis:</strong> ${product.price.toFixed(2)} €</p>
             <label for="quantity-${product.id}">Menge:</label>
             <input type="number" id="quantity-${product.id}" min="1" value="1">
             <button onclick="addToCart(${product.id})">In den Warenkorb</button>
         `;
-        productContainer.appendChild(productElement);
-    });
-}
+            productListElement.appendChild(productItem);
+        });
 
-displayProducts(products);
-
-// Add to cart function
-function addToCart(productId) {
-    const quantityInput = document.getElementById(`quantity-${productId}`);
-    const quantity = parseInt(quantityInput.value) || 1;
-
-    const product = products.find(p => p.id === productId);
-    const existing = cart.find(item => item.id === productId);
-
-    if (existing) {
-        existing.quantity += quantity;
-    } else {
-        cart.push({ ...product, quantity });
+        productContainer.appendChild(productListElement);
     }
 
-    updateCartDisplay();
-}
+    displayProducts(products);
 
-// Remove from cart function
-function removeFromCart(productId) {
-    const quantityInput = document.getElementById(`remove-quantity-${productId}`);
-    const quantityToRemove = parseInt(quantityInput.value) || 1;
+    // Add to cart function
+    function addToCart(productId) {
+        const quantityInput = document.getElementById(`quantity-${productId}`);
+        const quantity = parseInt(quantityInput.value) || 1;
 
-    const existing = cart.find(item => item.id === productId);
+        const product = products.find(p => p.id === productId);
+        const existing = cart.find(item => item.id === productId);
 
-    if (existing) {
-        existing.quantity -= quantityToRemove;
-        if (existing.quantity <= 0) {
-            cart = cart.filter(item => item.id !== productId);
+        if (existing) {
+            existing.quantity += quantity;
+        } else {
+            cart.push({ ...product, quantity });
         }
+
+        updateCartDisplay();
     }
 
-    updateCartDisplay();
-}
+    // Remove from cart function
+    function removeFromCart(productId) {
+        cart = cart.filter(item => item.id !== productId);
+        updateCartDisplay();
+    }
 
-// Update cart display
-function updateCartDisplay() {
-    const cartContainer = document.querySelector(".cart-items");
-    const totalDisplay = document.querySelector(".cart-total");
+    // Update cart display
+    function updateCartDisplay() {
+        const cartContainer = document.querySelector(".cart-items");
+        const totalDisplay = document.querySelector(".cart-total");
+        const checkoutButton = document.getElementById("checkout-btn");
 
-    cartContainer.innerHTML = ""; // Clear current cart
-    let total = 0;
+        cartContainer.innerHTML = ""; // Clear current cart
+        let total = 0;
 
-    cart.forEach(item => {
-        const cartItem = document.createElement("div");
-        cartItem.className = "cart-item";
-        cartItem.innerHTML = `
-            <p>${item.name} x${item.quantity}</p>
-            <p>${(item.price * item.quantity).toFixed(2)} €</p>
-            <label for="remove-quantity-${item.id}">Menge entfernen:</label>
-            <input type="number" id="remove-quantity-${item.id}" min="1" value="1">
-            <button onclick="removeFromCart(${item.id})">Entfernen</button>
-        `;
-        cartContainer.appendChild(cartItem);
-        total += item.price * item.quantity;
-    });
+        if (cart.length > 0) {
+            cart.forEach(item => {
+                const cartItem = document.createElement("div");
+                cartItem.className = "cart-item";
+                cartItem.innerHTML = `
+                <p>${item.name} x${item.quantity}</p>
+                <p>${(item.price * item.quantity).toFixed(2)} €</p>
+                <button onclick="removeFromCart(${item.id})">Entfernen</button>
+            `;
+                cartContainer.appendChild(cartItem);
+                total += item.price * item.quantity;
+            });
 
-    totalDisplay.textContent = `Gesamtsumme: ${total.toFixed(2)} €`;
-}
+            checkoutButton.style.display = "block";
+        } else {
+            checkoutButton.style.display = "none";
+        }
 
-function toggleMenu() {
-    const nav = document.getElementById('nav');
-    nav.classList.toggle('active');
-}
+        totalDisplay.textContent = `Gesamtsumme: ${total.toFixed(2)} €`;
+    }
+
+    function goToCheckout() {
+        window.location.href = "Kundenangabe.html";
+    }
+
+    function toggleMenu() {
+        const nav = document.getElementById('nav');
+        nav.classList.toggle('active');
+    }
 </script>
 </body>
 </html>
