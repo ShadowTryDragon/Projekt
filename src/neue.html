@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        line-height: 1.6;
-    }
-
-
     button:hover {
         background-color: #0056b3;
     }
@@ -21,8 +12,6 @@
             flex-wrap: wrap;
             gap: 20px;
         }
-
-
     }
 
     /* Center the layout and adjust spacing */
@@ -41,9 +30,6 @@
             width: 200px;
         }
     }
-
-
-
 
 </style>
 
@@ -71,10 +57,12 @@
     </nav>
 </header>
 
+<section class="hero"></section>
+
 <div class="content">
     <div class="container">
         <h1>Neuen Vorschlag einreichen</h1>
-        <form class="nf" id="burgerForm">
+        <form id="burgerForm">
             <div class="form-section">
                 <h2>Persönliche Daten</h2>
                 <label for="name">Vor- und Nachname</label>
@@ -105,8 +93,14 @@
                 <span class="error" id="imageError"></span>
             </div>
 
-            <button class="nb" type="submit">Absenden</button>
+            <button id="nb" type="submit">Absenden</button>
         </form>
+    </div>
+
+    <!-- Vorschläge anzeigen -->
+    <div class="suggestion-list" id="suggestionList">
+        <h2>Eingereichte Vorschläge</h2>
+        <!-- Vorschläge werden dynamisch hier hinzugefügt -->
     </div>
 </div>
 
@@ -121,60 +115,59 @@
     }
 
     const form = document.getElementById('burgerForm');
-    form.addEventListener('submit', function(e) {
+    const suggestionList = document.getElementById('suggestionList');
+
+    // Vorschlagsdaten aus Local Storage laden
+    const suggestions = JSON.parse(localStorage.getItem('suggestions')) || [];
+
+    // Funktion zum Speichern der Vorschläge
+    function saveSuggestions() {
+        localStorage.setItem('suggestions', JSON.stringify(suggestions));
+    }
+
+    // Vorschläge rendern
+    function renderSuggestions() {
+        suggestionList.innerHTML = '<h2>Eingereichte Vorschläge</h2>'; // Überschrift zurücksetzen
+        suggestions.forEach((suggestion, index) => {
+            const suggestionItem = document.createElement('div');
+            suggestionItem.classList.add('suggestion-item');
+            suggestionItem.innerHTML = `
+                <strong>${suggestion.name}</strong><br>
+                <em>${suggestion.email}</em><br>
+                <p><strong>Burger:</strong> ${suggestion.burgerName}</p>
+                <p><strong>Zutaten:</strong> ${suggestion.ingredients}</p>
+                <p><strong>Rezept:</strong> ${suggestion.recipe}</p>
+                <button onclick="deleteSuggestion(${index})">Löschen</button>
+            `;
+            suggestionList.appendChild(suggestionItem);
+        });
+    }
+
+    // Vorschlag löschen
+    function deleteSuggestion(index) {
+        suggestions.splice(index, 1);
+        saveSuggestions(); // Speichern nach dem Löschen
+        renderSuggestions();
+    }
+
+    // Formular validieren und absenden
+    form.addEventListener('submit', function (e) {
         e.preventDefault();
-        let isValid = true;
-
-        const name = document.getElementById('name');
-        const nameError = document.getElementById('nameError');
-        if (name.value.trim() === '') {
-            nameError.textContent = 'Bitte geben Sie Ihren Namen ein.';
-            isValid = false;
-        } else {
-            nameError.textContent = '';
-        }
-
-        const email = document.getElementById('email');
-        const emailError = document.getElementById('emailError');
-        if (!email.value.includes('@')) {
-            emailError.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
-            isValid = false;
-        } else {
-            emailError.textContent = '';
-        }
-
-        const burgerName = document.getElementById('burgerName');
-        const burgerNameError = document.getElementById('burgerNameError');
-        if (burgerName.value.trim() === '') {
-            burgerNameError.textContent = 'Bitte geben Sie einen Burger-Namen ein.';
-            isValid = false;
-        } else {
-            burgerNameError.textContent = '';
-        }
-
-        const ingredients = document.getElementById('ingredients');
-        const ingredientsError = document.getElementById('ingredientsError');
-        if (ingredients.value.trim() === '') {
-            ingredientsError.textContent = 'Bitte geben Sie die Zutaten ein.';
-            isValid = false;
-        } else {
-            ingredientsError.textContent = '';
-        }
-
-        const recipe = document.getElementById('recipe');
-        const recipeError = document.getElementById('recipeError');
-        if (recipe.value.trim() === '') {
-            recipeError.textContent = 'Bitte beschreiben Sie das Rezept.';
-            isValid = false;
-        } else {
-            recipeError.textContent = '';
-        }
-
-        if (isValid) {
-            alert('Vielen Dank für Ihren Vorschlag!');
-            form.reset();
-        }
+        const newSuggestion = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            burgerName: document.getElementById('burgerName').value,
+            ingredients: document.getElementById('ingredients').value,
+            recipe: document.getElementById('recipe').value,
+        };
+        suggestions.push(newSuggestion);
+        saveSuggestions(); // Speichern nach dem Hinzufügen
+        renderSuggestions();
+        form.reset();
     });
+
+    // Initiale Vorschläge anzeigen
+    renderSuggestions();
 </script>
 </body>
 </html>
