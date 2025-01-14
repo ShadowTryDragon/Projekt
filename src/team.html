@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team - Burger Online Shop</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+
+        @media (max-width: 768px) {
+            .team-member {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
+
 <body>
 <header>
-    <img src="Logo.webp" alt="Gojo Burgers Logo">
+    <img src="Logo.jpg" alt="Gojo Burgers Logo">
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav id="nav">
         <ul>
@@ -19,44 +29,45 @@
             <li><a href="neue.html">Produktvorschläge</a></li>
             <li><a href="impressum.html">Impressum</a></li>
             <li><a href="datenschutz.html">Datenschutz</a></li>
-
         </ul>
-
-
     </nav>
 </header>
-<section class="hero">
-</section>
+
+<section class="hero"></section>
 
 <main>
     <div class="content">
-    <h1>Unser Team</h1>
-    <section class="team-members">
-        <article class="team-member">
-            <h2>Boris Dekic</h2>
-            <p><strong>Position:</strong> Geschäftsführer</p>
-            <p>Boris ist der Gründer und Kopf des Unternehmens. </p>
-        </article>
+        <h1>Unser Team</h1>
+        <section class="team-members">
+            <!-- Teammitglied 1 -->
+            <article class="team-member">
+                <h2>Boris Dekic</h2>
+                <p><strong>Position:</strong> Geschäftsführer</p>
+                <p>Boris ist der Gründer und Kopf des Unternehmens.</p>
+            </article>
 
-        <article class="team-member">
-            <h2>Vincent</h2>
-            <p><strong>Position:</strong> Datenschutzbeauftragter</p>
-            <p>Vincent ist der Ansprechpartner wenn es um Datenschutz geht.</p>
-        </article>
+            <!-- Teammitglied 2 -->
+            <article class="team-member">
+                <h2>Vincent</h2>
+                <p><strong>Position:</strong> Datenschutzbeauftragter</p>
+                <p>Vincent ist der Ansprechpartner, wenn es um Datenschutz geht.</p>
+            </article>
 
-        <article class="team-member">
-            <h2>Marques </h2>
-            <p><strong>Position:</strong> Marketing-Manager</p>
-            <p>Marques kümmert sich um die Werbung und sorgt dafür, dass unser Burger-Shop in der ganzen Stadt bekannt ist.</p>
-        </article>
+            <!-- Teammitglied 3 -->
+            <article class="team-member">
+                <h2>Marques</h2>
+                <p><strong>Position:</strong> Marketing-Manager</p>
+                <p>Marques kümmert sich um die Werbung und sorgt dafür, dass unser Burger-Shop in der ganzen Stadt bekannt ist.</p>
+            </article>
 
-        <article class="team-member">
-            <h2>Nikolaj</h2>
-            <p><strong>Position:</strong> Kundenservice</p>
-            <p>Nikolaj ist das Gesicht unseres Kundenservice-Teams. Er beantwortet Fragen, hilft bei Bestellungen und sorgt für die Zufriedenheit unserer Kunden.</p>
-        </article>
-    </section>
-    </div>>
+            <!-- Teammitglied 4 -->
+            <article class="team-member">
+                <h2>Nikolaj</h2>
+                <p><strong>Position:</strong> Kundenservice</p>
+                <p>Nikolaj ist das Gesicht unseres Kundenservice-Teams. Er beantwortet Fragen, hilft bei Bestellungen und sorgt für die Zufriedenheit unserer Kunden.</p>
+            </article>
+        </section>
+    </div>
 </main>
 
 <footer>
@@ -66,8 +77,8 @@
 <script>
     function toggleMenu() {
         const nav = document.getElementById('nav');
-        nav.classList.toggle('active');}
-
+        nav.classList.toggle('active');
+    }
 </script>
 </body>
 </html>

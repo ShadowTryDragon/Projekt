@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kundenangabe - Gojo Burgers</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <img src="Logo.jpg" alt="Gojo Burgers Logo">
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav id="nav">
+    <ul>
+      <li><a href="index.html">Startseite</a></li>
+      <li><a href="produkte.html">Produkte</a></li>
+      <li><a href="neue.html">Produktvorschläge</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+      <li><a href="datenschutz.html">Datenschutz</a></li>
+    </ul>
+  </nav>
+</header>
+<section class="hero">
+</section>
+<main>
+  <h1>Kundenangaben</h1>
+  <div class="content">
+    <form id="kundenangabe-form" class="content">
+      <section class="personal-info">
+        <h2>Persönliche Daten</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">E-Mail:</label>
+        <input type="email" id="email" name="email">
+        <label for="telefon">Telefonnummer:</label>
+        <input type="tel" id="telefon" name="telefon" required>
+      </section>
+
+      <section class="content">
+        <h2>Adresse</h2>
+        <label for="strasse">Straße:</label>
+        <input type="text" id="strasse" name="strasse" required>
+        <label for="hausnummer">Hausnummer:</label>
+        <input type="text" id="hausnummer" name="hausnummer" required>
+        <label for="zusatz">Zusätzliche Angaben:</label>
+        <input type="text" id="zusatz" name="zusatz">
+        <label for="plz">PLZ:</label>
+        <input type="text" id="plz" name="plz" required>
+        <label for="ort">Ort:</label>
+        <input type="text" id="ort" name="ort" required>
+      </section>
+
+      <section class="content">
+        <h2>Zahlungsmethode</h2>
+        <label>
+          <input type="radio" name="payment" value="Kreditkarte" required> Kreditkarte
+        </label>
+        <label>
+          <input type="radio" name="payment" value="PayPal" required>
+          PayPal
+        </label>
+        <label>
+          <input type="radio" name="payment" value="Barzahlung" required>
+          Barzahlung
+        </label>
+      </section>
+
+      <button type="submit">Bestätigen</button>
+    </form>
+  </div>
+</main>
+<footer>
+  <p>&copy; Gojo Burger. Alle Rechte vorbehalten.</p>
+</footer>
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('nav');
+    nav.classList.toggle('active');
+  }
+
+  document.getElementById('kundenangabe-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    alert('Vielen Dank für Ihre Angaben!');
+  });
+</script>
+</body>
+</html>

@@ -4,7 +4,16 @@
     button:hover {
         background-color: #0056b3;
     }
-
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        resize: none;
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+    }
 
     /* Center the layout and adjust spacing */
     @media (min-width: 1200px) {
@@ -14,7 +23,14 @@
         }
 
         form {
+            background-color: #e9c46a;
+            padding: 50px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+            display: flex;
             flex-direction: column;
+            gap: 15px;
         }
 
         button {
@@ -34,7 +50,7 @@
 
 <body>
 <header>
-    <img src="Logo.webp" alt="Gojo Burgers Logo">
+    <img src="Logo.jpg" alt="Gojo Burgers Logo">
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav id="nav">
         <ul>
@@ -117,30 +133,25 @@
         localStorage.setItem('suggestions', JSON.stringify(suggestions));
     }
 
-    // Vorschläge rendern
     function renderSuggestions() {
         suggestionList.innerHTML = '<h2>Eingereichte Vorschläge</h2>'; // Überschrift zurücksetzen
-        suggestions.forEach((suggestion, index) => {
+        suggestions.forEach((suggestion) => {
             const suggestionItem = document.createElement('div');
             suggestionItem.classList.add('suggestion-item');
             suggestionItem.innerHTML = `
-                <strong>Name: ${suggestion.name}</strong> <br>
-                <em>Email: ${suggestion.email}</em>
-                <p>Burger:${suggestion.burgerName}</p>
-                <p>Zutaten:${suggestion.ingredients}</p>
-                <p>Rezept:${suggestion.recipe}</p>
-                <button onclick="deleteSuggestion(${index})">Löschen</button>
+                <textarea readonly rows="6">
+Name: ${suggestion.name}
+Email: ${suggestion.email}
+Burger: ${suggestion.burgerName}
+Zutaten: ${suggestion.ingredients}
+Rezept: ${suggestion.recipe}
+                </textarea>
             `;
             suggestionList.appendChild(suggestionItem);
         });
     }
 
-    // Vorschlag löschen
-    function deleteSuggestion(index) {
-        suggestions.splice(index, 1);
-        saveSuggestions(); // Speichern nach dem Löschen
-        renderSuggestions();
-    }
+
 
     // Formular validieren und absenden
     form.addEventListener('submit', function (e) {

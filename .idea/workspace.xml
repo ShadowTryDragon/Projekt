@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fba2a23-77cb-41d3-9fec-5ddccb751c39" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/src/admin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Kundenangabe.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Logo.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Kundenangabe.hmtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datenschutz.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/datenschutz.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/impressum.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/impressum.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/neue.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/neue.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/produkte.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/produkte.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/team.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +59,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -79,6 +91,7 @@
       <workItem from="1733824422023" duration="359000" />
       <workItem from="1733824900859" duration="7061000" />
       <workItem from="1733843033801" duration="6110000" />
+      <workItem from="1736867858119" duration="8711000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
