@@ -93,7 +93,7 @@
       const li = document.createElement('li');
 
       const content = document.createElement('div');
-      content.innerHTML = `<strong> Name: ${suggestion.name} </strong> <br> Burger: ${suggestion.burgerName}<br>Zutaten: ${suggestion.ingredients}<br>Rezept: ${suggestion.recipe}`;
+      content.innerHTML = `<strong> Name: ${suggestion.name} </strong> <br> Produktname: ${suggestion.burgerName}<br>Zutaten: ${suggestion.ingredients}<br>Rezept: ${suggestion.recipe}`;
       li.appendChild(content);
 
       const buttonGroup = document.createElement('div');
@@ -102,12 +102,13 @@
       const editButton = document.createElement('button');
       editButton.textContent = 'Bearbeiten';
       editButton.addEventListener('click', function () {
-        const newBurgerName = prompt('Neuer Name:', suggestion.burgerName);
+        const newName = prompt('Neuer Name:', suggestion.name);
+        const newBurgerName = prompt('Neuer Produkt Name:', suggestion.burgerName);
         const newIngredients = prompt('Neue Zutaten:', suggestion.ingredients);
         const newRecipe = prompt('Neues Rezept:', suggestion.recipe);
 
-        if (newBurgerName && newIngredients && newRecipe) {
-          suggestions[index] = { ...suggestion, burger: newBurgerName, ingredients: newIngredients, recipe: newRecipe };
+        if (newName && newBurgerName && newIngredients && newRecipe) {
+          suggestions[index] = { ...suggestion, name: newName, burger: newBurgerName, ingredients: newIngredients, recipe: newRecipe };
           saveSuggestions();
           renderSuggestions();
         }
