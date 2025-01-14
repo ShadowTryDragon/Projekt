@@ -38,25 +38,15 @@
             </form>
         </section>
     </div>
-    <div class="content">
-        <section class="register-section">
-            <h2>Registrierung</h2>
-            <form class="register-form">
-                <label for="register-username">Benutzername:</label>
-                <input type="text" id="register-username" name="register-username" required>
-                <label for="register-password">Passwort:</label>
-                <input type="password" id="register-password" name="register-password" required>
-                <button type="submit">Registrieren</button>
-            </form>
-        </section>
-    </div>
 </main>
 <footer>
     <p>&copy; Gojo Burger. Alle Rechte vorbehalten.</p>
 </footer>
 <script>
     const users = [
-        { username: "admin", password: "password123" }
+        { username: "admin", password: "password123" },
+        { username: "Der Coole", password: "password123" },
+        { username: "boris", password: "1234" }
     ];
 
     // Login functionality
@@ -75,20 +65,7 @@
         }
     });
 
-    // Registration functionality
-    document.querySelector('.register-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const username = document.getElementById('register-username').value;
-        const password = document.getElementById('register-password').value;
 
-        if (users.some(user => user.username === username)) {
-            alert("Benutzername ist bereits vergeben.");
-        } else {
-            users.push({ username, password });
-            alert("Registrierung erfolgreich! Sie können sich jetzt anmelden.");
-            document.querySelector('.register-form').reset();
-        }
-    });
 
     function toggleMenu() {
         const nav = document.getElementById('nav');
