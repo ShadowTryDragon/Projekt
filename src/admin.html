@@ -42,6 +42,12 @@
     <form class="fadmin" id="newSuggestionForm">
 
 
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Vor und Nachname" required>
+
+      <label for="email">Name</label>
+      <input type="text" id="email" name="email" placeholder="Email" required>
+
       <label for="burgerName">Name</label>
       <input type="text" id="burgerName" name="burgerName" placeholder="Name des Burgers" required>
 
@@ -73,6 +79,10 @@
 
   const suggestionList = document.getElementById('suggestionList');
 
+
+
+
+
   function saveSuggestions() {
     localStorage.setItem('suggestions', JSON.stringify(suggestions));
   }
@@ -83,7 +93,7 @@
       const li = document.createElement('li');
 
       const content = document.createElement('div');
-      content.innerHTML = `<strong>${suggestion.name}</strong><br>Zutaten: ${suggestion.ingredients}<br>Rezept: ${suggestion.recipe}`;
+      content.innerHTML = `<strong> Name: ${suggestion.name} </strong> <br> Burger: ${suggestion.burgerName}<br>Zutaten: ${suggestion.ingredients}<br>Rezept: ${suggestion.recipe}`;
       li.appendChild(content);
 
       const buttonGroup = document.createElement('div');
@@ -92,12 +102,12 @@
       const editButton = document.createElement('button');
       editButton.textContent = 'Bearbeiten';
       editButton.addEventListener('click', function () {
-        const newName = prompt('Neuer Name:', suggestion.name);
+        const newBurgerName = prompt('Neuer Name:', suggestion.burgerName);
         const newIngredients = prompt('Neue Zutaten:', suggestion.ingredients);
         const newRecipe = prompt('Neues Rezept:', suggestion.recipe);
 
-        if (newName && newIngredients && newRecipe) {
-          suggestions[index] = { ...suggestion, name: newName, ingredients: newIngredients, recipe: newRecipe };
+        if (newBurgerName && newIngredients && newRecipe) {
+          suggestions[index] = { ...suggestion, burger: newBurgerName, ingredients: newIngredients, recipe: newRecipe };
           saveSuggestions();
           renderSuggestions();
         }
@@ -125,11 +135,14 @@
   newSuggestionForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const name = document.getElementById('burgerName').value;
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const burgerName = document.getElementById('burgerName').value;
     const ingredients = document.getElementById('ingredients').value;
     const recipe = document.getElementById('recipe').value;
 
-    suggestions.push({ id: suggestions.length + 1, name, ingredients, recipe });
+    suggestions.push({ id: suggestions.length + 1, name, email, burgerName, ingredients, recipe });
     saveSuggestions();
     renderSuggestions();
 
