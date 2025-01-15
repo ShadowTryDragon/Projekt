@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="de">
-
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,13 +25,11 @@
 <section class="hero">
 </section>
 <main>
-
     <h1>Anmelden oder Registrieren</h1>
-
     <div class="content">
         <section class="login-section">
             <h2>Anmeldung</h2>
-            <form class="loginform">
+            <form class="login-form">
                 <label for="username">Benutzername:</label>
                 <input type="text" id="username" name="username" required>
                 <label for="password">Passwort:</label>
@@ -43,6 +38,7 @@
             </form>
         </section>
     </div>
+
 </main>
 <footer>
     <p>&copy; Gojo Burger. Alle Rechte vorbehalten.</p>
@@ -51,7 +47,7 @@
     const users = [
         { username: "admin", password: "password123" },
         { username: "Der Coole", password: "password123" },
-        { username: "boris", password: "1234" }
+        { username: "boris", password: "1234"}
     ];
 
     // Login functionality
@@ -70,6 +66,7 @@
         }
     });
 
+    // Registration functionality
 
 
     function toggleMenu() {
@@ -78,4 +75,3 @@
     }
 </script>
 </body>
-</html>
