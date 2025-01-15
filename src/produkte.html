@@ -5,6 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produkte - Burger Online Shop</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Warenkorb CSS */
+        .cart {
+            position: fixed;
+            top: 10px;
+            left: 60px;
+            background-color: #ffa500;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            width: 250px;
+            max-height: 0; /* Startet geschlossen */
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .cart.open {
+            max-height: 400px; /* Öffnet den Warenkorb */
+            overflow-y: auto; /* Scrollbar bei Überlauf */
+        }
+        .cart-toggle {
+            display: block;
+            position: fixed;
+            top: 170px;
+            right: 10px;
+            background-color: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .cart-item button {
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            cursor: pointer;
+        }
+        .cart-total {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -24,115 +74,78 @@
 </header>
 <section class="hero">
 </section>
-
 <main>
     <div class="content">
         <h1>Unsere Karte</h1>
 
-        <section class="filter-options">
-            <button id="filter-all" onclick="filterProducts('all')">Alle</button>
-            <button id="filter-beef" onclick="filterProducts('beef')">Beef</button>
-            <button id="filter-vegetarian" onclick="filterProducts('vegetarian')">Vegetarisch</button>
-            <button id="filter-beilage" onclick="filterProducts('beilage')">Beilage</button>
-            <button id="filter-getränke" onclick="filterProducts('getränke')">Getränke</button>
-            <button id="filter-Saucen" onclick="filterProducts('saucen')">Saucen</button>
-        </section>
-
         <section class="products">
             <!-- Dynamische Produktanzeige -->
-        </section>
-
-        <section class="cart">
-            <h2>Warenkorb</h2>
-            <div class="cart-items">
-                <!-- Dynamische Warenkorbanzeige -->
-            </div>
-            <p class="cart-total">Gesamtsumme: 0,00 €</p>
-            <button id="checkout-btn" onclick="goToCheckout()" style="display: none;">Zur Kasse</button>
         </section>
     </div>
 </main>
 
+<!-- Warenkorb -->
+<button class="cart-toggle" onclick="toggleCart()">Warenkorb</button>
+<div class="cart">
+    <h2>Warenkorb</h2>
+    <div class="cart-items">
+        <!-- Dynamische Warenkorbanzeige -->
+    </div>
+    <p class="cart-total">Gesamtsumme: 0,00 €</p>
+</div>
 <footer>
-    <p>&copy; Gojo Burger. Alle Rechte vorbehalten.</p>
+    <p>&copy; 2024 Burger Online Shop. Alle Rechte vorbehalten.</p>
 </footer>
-
 <script>
     const products = [
         { id: 1, name: "Classic Burger", category: "beef", price: 5.99 },
         { id: 2, name: "Cheeseburger", category: "beef", price: 6.49 },
         { id: 3, name: "Veggie Burger", category: "vegetarian", price: 5.49 },
-        { id: 4, name: "BBQ Bacon Burger", category: "beef", price: 7.49 },
-        { id: 5, name: "Salat", category: "beilage", price: 3.90 },
-        { id: 6, name: "Pommes", category: "beilage", price: 3.50 },
-        { id: 7, name: "Wasser", category: "getränke", price: 2.70 },
-        { id: 8, name: "Soft Drinks", category: "getränke", price: 3.00 },
-        { id: 9, name: "Gojo Special Burger", category: "beef", price: 10.00 }];
+        { id: 4, name: "BBQ Bacon Burger", category: "beef", price: 7.49 }
+    ];
 
     let cart = [];
+    let isCartOpen = false;
 
-    // Filter function
-    function filterProducts(category) {
-        const filtered = category === "all" ? products : products.filter(product => product.category === category);
-        displayProducts(filtered);
+    // Warenkorb ein- und ausklappen
+    function toggleCart() {
+        const cart = document.querySelector(".cart");
+        isCartOpen = !isCartOpen;
+
+        if (isCartOpen) {
+            cart.classList.add("open");
+            updateCartContent(); // Inhalt anzeigen
+        } else {
+            cart.classList.remove("open");
+        }
     }
 
-    // Display products dynamically
-    function displayProducts(productList) {
-        const productContainer = document.querySelector(".products");
-        productContainer.innerHTML = ""; // Clear current products
-
-        const productListElement = document.createElement("ul");
-        productListElement.className = "product-list";
-
-        productList.forEach(product => {
-            const productItem = document.createElement("li");
-            productItem.className = "product-item";
-            productItem.innerHTML = `
-            <h2>${product.name}</h2>
-            <p><strong>Preis:</strong> ${product.price.toFixed(2)} €</p>
-            <label for="quantity-${product.id}">Menge:</label>
-            <input type="number" id="quantity-${product.id}" min="1" value="1">
-            <button onclick="addToCart(${product.id})">In den Warenkorb</button>
-        `;
-            productListElement.appendChild(productItem);
-        });
-
-        productContainer.appendChild(productListElement);
-    }
-
-    displayProducts(products);
-
-    // Add to cart function
+    // Produkte zum Warenkorb hinzufügen
     function addToCart(productId) {
-        const quantityInput = document.getElementById(`quantity-${productId}`);
-        const quantity = parseInt(quantityInput.value) || 1;
-
         const product = products.find(p => p.id === productId);
         const existing = cart.find(item => item.id === productId);
 
         if (existing) {
-            existing.quantity += quantity;
+            existing.quantity++;
         } else {
-            cart.push({ ...product, quantity });
+            cart.push({ ...product, quantity: 1 });
         }
 
-        updateCartDisplay();
+        updateCartContent(); // Inhalt aktualisieren
     }
 
-    // Remove from cart function
+    // Produkte aus dem Warenkorb entfernen
     function removeFromCart(productId) {
         cart = cart.filter(item => item.id !== productId);
-        updateCartDisplay();
+        updateCartContent(); // Inhalt aktualisieren
     }
 
-    // Update cart display
-    function updateCartDisplay() {
+    // Warenkorb-Inhalt aktualisieren
+    function updateCartContent() {
         const cartContainer = document.querySelector(".cart-items");
         const totalDisplay = document.querySelector(".cart-total");
-        const checkoutButton = document.getElementById("checkout-btn");
 
-        cartContainer.innerHTML = ""; // Clear current cart
+        cartContainer.innerHTML = ""; // Aktuellen Inhalt löschen
         let total = 0;
 
         if (cart.length > 0) {
@@ -140,30 +153,39 @@
                 const cartItem = document.createElement("div");
                 cartItem.className = "cart-item";
                 cartItem.innerHTML = `
-                <p>${item.name} x${item.quantity}</p>
-                <p>${(item.price * item.quantity).toFixed(2)} €</p>
-                <button onclick="removeFromCart(${item.id})">Entfernen</button>
-            `;
+                    <p>${item.name} x${item.quantity}</p>
+                    <p>${(item.price * item.quantity).toFixed(2)} €</p>
+                    <button onclick="removeFromCart(${item.id})">Entfernen</button>
+                `;
                 cartContainer.appendChild(cartItem);
                 total += item.price * item.quantity;
             });
-
-            checkoutButton.style.display = "block";
         } else {
-            checkoutButton.style.display = "none";
+            cartContainer.innerHTML = "<p>Ihr Warenkorb ist leer.</p>";
         }
 
         totalDisplay.textContent = `Gesamtsumme: ${total.toFixed(2)} €`;
     }
-
-    function goToCheckout() {
-        window.location.href = "Kundenangabe.html";
-    }
-
     function toggleMenu() {
         const nav = document.getElementById('nav');
-        nav.classList.toggle('active');
+        nav.classList.toggle('active');}
+    // Beispiel-Produkte anzeigen
+    function displayProducts() {
+        const productContainer = document.querySelector(".products");
+
+        products.forEach(product => {
+            const productItem = document.createElement("div");
+            productItem.className = "product-item";
+            productItem.innerHTML = `
+                <h2>${product.name}</h2>
+                <p><strong>Preis:</strong> ${product.price.toFixed(2)} €</p>
+                <button onclick="addToCart(${product.id})">In den Warenkorb</button>
+            `;
+            productContainer.appendChild(productItem);
+        });
     }
+
+    displayProducts();
 </script>
 </body>
 </html>
