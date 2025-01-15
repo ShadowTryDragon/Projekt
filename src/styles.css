@@ -86,7 +86,7 @@ nav ul li a {
     margin-right: 15px;
 }
 footer {
-    background-color: #FFA500FF;
+    background-color: #fdc401;
     padding: 10px 20px;
     text-align: center;
     bottom: 100%;
@@ -366,7 +366,7 @@ label {
 
     bottom: 5px;
     left: 60px;
-    background-color: #ffa500;
+    background-color: #fdc401;
     border: none;
     border-radius: 8px;
     padding: 10px;
@@ -395,11 +395,11 @@ label {
 
 
 /* Responsivität */
-@media (max-width: 768px) {
+@media (max-width: 800px) {
     .cart-toggle {
         position: fixed;
         top: 35px;
-        right: 170px;
+        right: 680px;
         font-size: 20px;
     }
 }
@@ -412,14 +412,23 @@ label {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1300px) {
     .cart-toggle {
-        width: 30px;
-        height: 30px;
-        font-size: 14px;
-        line-height: 30px;
+        position: fixed;
+        top: 35px;
+        right: 500px;
+        font-size: 20px;
     }
 }
+@media (max-width: 800px) {
+    .cart-toggle {
+        position: fixed;
+        top: 35px;
+        right: 250px;
+        font-size: 20px;
+    }
+}
+
 
 .cart-item button {
     background-color: red;
@@ -474,3 +483,124 @@ label {
 .cart-checkout-btn:hover {
     background-color: #005bb5;
 }
+/* Filter Styling */
+.filter {
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#filter-toggle {
+    background-color: #0078d7;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#filter-toggle:hover {
+    background-color: #005bb5;
+}
+
+.filter-options {
+    margin-top: 10px;
+    display: none;
+}
+
+.filter-options.hidden {
+    display: none;
+}
+
+.filter-options ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.filter-options li {
+    margin: 5px 0;
+}
+
+.filter-options button {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.filter-options button:hover {
+    background-color: #ddd;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .filter {
+        padding: 5px;
+    }
+
+    #filter-toggle {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .filter-options button {
+        font-size: 14px;
+        padding: 6px;
+    }
+}
+/* Styling for the filter */
+.filter-container {
+    position: relative;
+    margin-top: 20px;
+    width: 200px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter-header {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #0078d7;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+}
+
+.filter-content {
+    display: none;
+    padding: 10px;
+    background-color: white;
+    border-top: 1px solid #ccc;
+}
+
+.filter-button {
+    display: block;
+    margin: 5px 0;
+    padding: 5px 10px;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.filter-button:hover {
+    background-color: #005bb5;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .filter-container {
+        width: 100%;
+    }
+}
+
+
