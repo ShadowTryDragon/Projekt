@@ -150,7 +150,6 @@
                 cartItem.className = "cart-item";
                 cartItem.innerHTML = `
                     <p>${item.name} x${item.quantity}</p>
-                   <p>${item.category} x${item.quantity}</p>
                     <p>${(item.price * item.quantity).toFixed(2)} €</p>
                     <button onclick="removeFromCart(${item.id})">Entfernen</button>
                 `;
