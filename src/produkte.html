@@ -6,59 +6,13 @@
     <title>Produkte - Burger Online Shop</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Warenkorb CSS */
-        .cart {
-            position: fixed;
-            top: 10px;
-            left: 60px;
-            background-color: #ffa500;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 10px;
-            width: 250px;
-            max-height: 0; /* Startet geschlossen */
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        .cart.open {
-            max-height: 400px; /* Öffnet den Warenkorb */
-            overflow-y: auto; /* Scrollbar bei Überlauf */
-        }
-        .cart-toggle {
-            display: block;
-            position: fixed;
-            top: 170px;
-            right: 10px;
-            background-color: #0078d7;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 16px;
-            cursor: pointer;
-        }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .cart-item button {
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 4px 8px;
-            cursor: pointer;
-        }
-        .cart-total {
-            font-weight: bold;
-            margin-top: 10px;
-        }
+
     </style>
 </head>
 <body>
 <header>
     <img src="Logo.jpg" alt="Gojo Burgers Logo">
+    <button class="cart-toggle" onclick="toggleCart()">🛒</button>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav id="nav">
         <ul>
@@ -73,7 +27,10 @@
     </nav>
 </header>
 <section class="hero">
+    <button class="cart-toggle" onclick="toggleCart()">🛒</button>
 </section>
+
+
 <main>
     <div class="content">
         <h1>Unsere Karte</h1>
@@ -85,23 +42,36 @@
 </main>
 
 <!-- Warenkorb -->
-<button class="cart-toggle" onclick="toggleCart()">Warenkorb</button>
+<button class="cart-toggle" onclick="toggleCart()"></button>
 <div class="cart">
-    <h2>Warenkorb</h2>
     <div class="cart-items">
         <!-- Dynamische Warenkorbanzeige -->
     </div>
     <p class="cart-total">Gesamtsumme: 0,00 €</p>
+    <a href="Kundenangabe.html" class="cart-checkout-btn">Zur Kasse</a>
 </div>
 <footer>
     <p>&copy; 2024 Burger Online Shop. Alle Rechte vorbehalten.</p>
 </footer>
 <script>
     const products = [
-        { id: 1, name: "Classic Burger", category: "beef", price: 5.99 },
-        { id: 2, name: "Cheeseburger", category: "beef", price: 6.49 },
-        { id: 3, name: "Veggie Burger", category: "vegetarian", price: 5.49 },
-        { id: 4, name: "BBQ Bacon Burger", category: "beef", price: 7.49 }
+        { id: 1, name: "Classic Burger", category: "Beef", price: 5.99 },
+        { id: 2, name: "Chicken Burger", category: "Beef", price: 7.99 },
+        { id: 3, name: "JR Gojo Burger", category: "Beef", price: 4.99 },
+        { id: 4, name: "Cheeseburger", category: "Beef", price: 6.49 },
+        { id: 5, name: "Veggie Burger", category: "Vegetarian", price: 5.49 },
+        { id: 6, name: "BBQ Bacon Burger", category: "Beef", price: 7.49 },
+        { id: 7, name: "Salat", category: "Beilage", price: 3.90 },
+        { id: 8, name: "Pommes", category: "Beilage", price: 3.50 },
+        { id: 9, name: "Wasser", category: "Getränke", price: 2.70 },
+        { id: 10, name: "Soft Drinks", category: "Getränke", price: 3.00 },
+        { id: 11, name: "Gojo Special Burger", category: "Beef", price: 10.00 },
+        { id: 12, name: "Gojo Special Burger Veg", category: "Vegetarian", price: 5.99 },
+        { id: 13, name: "Classic Burger", category: "Beef", price: 5.99 },
+        { id: 14, name: "Eisbergsalat", category: "Salat", price: 3.88 },
+        { id: 15, name: "Classic Veg Burger", category: "Vegetarian", price: 5.99 },
+        { id: 16, name: "Dino Nuggez", category: "Beilage", price: 4.99 },
+        { id: 17, name: "Ketschup", category: "Soße", price: 0.99 },
     ];
 
     let cart = [];
@@ -154,6 +124,7 @@
                 cartItem.className = "cart-item";
                 cartItem.innerHTML = `
                     <p>${item.name} x${item.quantity}</p>
+                   <p>${item.category} x${item.quantity}</p>
                     <p>${(item.price * item.quantity).toFixed(2)} €</p>
                     <button onclick="removeFromCart(${item.id})">Entfernen</button>
                 `;
@@ -178,6 +149,7 @@
             productItem.className = "product-item";
             productItem.innerHTML = `
                 <h2>${product.name}</h2>
+                <p><strong>Kategorie:</strong> ${product.category} </p>
                 <p><strong>Preis:</strong> ${product.price.toFixed(2)} €</p>
                 <button onclick="addToCart(${product.id})">In den Warenkorb</button>
             `;
