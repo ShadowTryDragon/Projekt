@@ -29,6 +29,19 @@
 <section class="hero">
     <button class="cart-toggle" onclick="toggleCart()">🛒</button>
 </section>
+<section class="filter-container">
+    <div class="filter-header" onclick="toggleFilter()">Filter</div>
+    <div class="filter-content">
+        <button class="filter-button" onclick="filterProducts('all')">Alle</button>
+        <button class="filter-button" onclick="filterProducts('Beef')">Beef</button>
+        <button class="filter-button" onclick="filterProducts('Vegetarian')">Vegetarisch</button>
+        <button class="filter-button" onclick="filterProducts('Beilage')">Beilage</button>
+        <button class="filter-button" onclick="filterProducts('Getränke')">Getränke</button>
+        <button class="filter-button" onclick="filterProducts('Saucen')">Saucen</button>
+    </div>
+</section>
+
+
 
 
 <main>
@@ -51,7 +64,7 @@
     <a href="Kundenangabe.html" class="cart-checkout-btn">Zur Kasse</a>
 </div>
 <footer>
-    <p>&copy; 2024 Burger Online Shop. Alle Rechte vorbehalten.</p>
+    <p>&copy; 2024 Gojo Burger. Alle Rechte vorbehalten.</p>
 </footer>
 <script>
     const products = [
@@ -68,11 +81,24 @@
         { id: 11, name: "Gojo Special Burger", category: "Beef", price: 10.00 },
         { id: 12, name: "Gojo Special Burger Veg", category: "Vegetarian", price: 5.99 },
         { id: 13, name: "Classic Burger", category: "Beef", price: 5.99 },
-        { id: 14, name: "Eisbergsalat", category: "Salat", price: 3.88 },
+        { id: 14, name: "Eisbergsalat", category: "Beilage", price: 3.88 },
         { id: 15, name: "Classic Veg Burger", category: "Vegetarian", price: 5.99 },
         { id: 16, name: "Dino Nuggez", category: "Beilage", price: 4.99 },
-        { id: 17, name: "Ketschup", category: "Soße", price: 0.99 },
     ];
+
+    // Toggle filter visibility
+    function toggleFilter() {
+        const filterContent = document.querySelector(".filter-content");
+        filterContent.style.display = filterContent.style.display === "block" ? "none" : "block";
+    }
+
+    // Update the filterProducts function to display relevant products
+    function filterProducts(category) {
+        const filtered = category === "all" ? products : products.filter(product => product.category === category);
+        displayProducts(filtered);
+    }
+
+
 
     let cart = [];
     let isCartOpen = false;
@@ -140,24 +166,38 @@
     function toggleMenu() {
         const nav = document.getElementById('nav');
         nav.classList.toggle('active');}
-    // Beispiel-Produkte anzeigen
-    function displayProducts() {
-        const productContainer = document.querySelector(".products");
 
-        products.forEach(product => {
-            const productItem = document.createElement("div");
+    // Beispiel-Produkte anzeigen
+    function displayProducts(productList) {
+        const productContainer = document.querySelector(".products");
+        productContainer.innerHTML = ""; // Clear current product list
+
+        if (productList.length === 0) {
+            productContainer.innerHTML = `<p>Keine Produkte in dieser Kategorie verfügbar.</p>`;
+            return;
+        }
+
+        const productListElement = document.createElement("ul");
+        productListElement.className = "product-list";
+
+        productList.forEach(product => {
+            const productItem = document.createElement("li");
             productItem.className = "product-item";
             productItem.innerHTML = `
-                <h2>${product.name}</h2>
-                <p><strong>Kategorie:</strong> ${product.category} </p>
-                <p><strong>Preis:</strong> ${product.price.toFixed(2)} €</p>
-                <button onclick="addToCart(${product.id})">In den Warenkorb</button>
+            <h2>${product.name}</h2>
+            <p><strong>Kategorie:</strong> ${product.category}</p>
+            <p><strong>Preis:</strong> ${product.price.toFixed(2)} €</p>
+            <button onclick="addToCart(${product.id})">In den Warenkorb</button>
             `;
             productContainer.appendChild(productItem);
         });
+
+        productContainer.appendChild(productListElement);
     }
 
     displayProducts();
+
+
 </script>
 </body>
 </html>
