@@ -86,7 +86,7 @@ nav ul li a {
     margin-right: 15px;
 }
 footer {
-    background-color: #fdc401;
+    background-color: #FFA500FF;
     padding: 10px 20px;
     text-align: center;
     bottom: 100%;
@@ -295,7 +295,7 @@ label {
     background-color: #f9f9f9;
 }
 
-.loginform {
+.login-form {
     background-color: #e9c46a;
     padding: 50px;
     border-radius: 10px;
