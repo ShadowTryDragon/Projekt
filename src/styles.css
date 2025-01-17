@@ -354,7 +354,7 @@ label {
 
 .product-item button {
     padding: 5px 10px;
-    background-color: #007bff;
+    background-color: #e9c46a;
     color: white;
     border: none;
     border-radius: 4px;
@@ -460,7 +460,7 @@ label {
     font-size: 14px;
 }
 .product-item button {
-    background-color: #0078d7;
+    background-color: #e9c46a;
     color: white;
     border: none;
     border-radius: 4px;
@@ -493,7 +493,7 @@ label {
 }
 
 #filter-toggle {
-    background-color: #0078d7;
+    background-color: #e9c46a;
     color: white;
     padding: 10px;
     border: none;
@@ -502,7 +502,7 @@ label {
 }
 
 #filter-toggle:hover {
-    background-color: #005bb5;
+    background-color: #e9c46a;
 }
 
 .filter-options {
@@ -566,7 +566,7 @@ label {
 .filter-header {
     padding: 10px;
     cursor: pointer;
-    background-color: #0078d7;
+    background-color: #e9c46a;
     color: white;
     font-weight: bold;
     border-radius: 5px 5px 0 0;
@@ -584,7 +584,7 @@ label {
     display: block;
     margin: 5px 0;
     padding: 5px 10px;
-    background-color: #0078d7;
+    background-color: #e9c46a;
     color: white;
     border: none;
     border-radius: 5px;
@@ -593,13 +593,59 @@ label {
 }
 
 .filter-button:hover {
-    background-color: #005bb5;
+    background-color: #e9c46a;
 }
 
 /* Responsiveness */
 @media (max-width: 768px) {
     .filter-container {
         width: 100%;
+    }
+}
+
+/* Warenkorb-Produktbox */
+.cart-items .cart-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cart-items .cart-item p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.cart-items .cart-item button {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.cart-items .cart-item button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsivität für die Produktboxen im Warenkorb */
+@media (max-width: 768px) {
+    .cart-items .cart-item {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .cart-items .cart-item button {
+        font-size: 12px;
+        padding: 4px 8px;
     }
 }
 
